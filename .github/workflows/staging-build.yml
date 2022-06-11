@@ -1,0 +1,39 @@
+name: Publish on Github Packages
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Java for publishing to GitHub Packages
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Set output
+        id: vars
+        run: echo "::set-output name=branch_name::${GITHUB_REF#refs/heads/}"
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+      - name: Build Package
+        run: mvn clean compile -Dmaven.test.skip=true
+      #      - name: Run Sonar
+      #        run: mvn sonar:sonar -Dsonar.projectKey=rara-delivery-framework-common -Dsonar.host.url=https://sonar.console.rara.delivery -Dsonar.login=3a07d692d2170c019d8d2599767cb319309c7166 -Dsonar.branch.name=${{ steps.vars.outputs.branch_name }}
+      - name: Publish to GitHub Packages
+        run: mvn deploy
+        env:
+          GITHUB_ACTOR: ${{ secrets.PUBLISHED_BY }}
+          GITHUB_TOKEN: ${{ secrets.PUBLISHED_TOKEN }}
