@@ -3,6 +3,7 @@ package com.base.crudapp.controller;
 import com.base.crudapp.entity.BaseEntity;
 import com.base.crudapp.service.BaseService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -64,8 +65,8 @@ public class BaseController<T extends BaseEntity<ID>, ID extends Serializable> {
 
     @GetMapping("/get/page")
     @Operation(summary = "Get all objects")
-    public ResponseEntity<List<T>> page(Pageable param) {
-        return ResponseEntity.ok(baseService.findAll(param).toList());
+    public ResponseEntity<Page<T>> page(Pageable param) {
+        return ResponseEntity.ok(baseService.findAll(param));
     }
 
     @GetMapping("/get/{id}")
