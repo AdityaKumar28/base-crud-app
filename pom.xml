@@ -10,7 +10,7 @@
 
     <groupId>io.github.adityakumar28</groupId>
     <artifactId>base-crud-app</artifactId>
-    <version>1.0</version>
+    <version>1.0.0</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Library for reducing dev time for spring boot developers.Idea is to generify the boilerplate code which is required for the creation of a CRUD application so that one should write the same code again and again for different class types.</description>
 
@@ -118,20 +118,13 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.8</version>
+                <version>1.6.13</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
                     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.thoughtworks.xstream</groupId>
-                        <artifactId>xstream</artifactId>
-                        <version>1.4.15</version> <!-- apparently this needs to be exactly this version -->
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
