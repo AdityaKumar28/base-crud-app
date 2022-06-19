@@ -10,7 +10,7 @@
 
     <groupId>io.github.adityakumar28</groupId>
     <artifactId>base-crud-app</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Library for reducing dev time for spring boot developers.Idea is to generify the boilerplate code which is required for the creation of a CRUD application so that one should write the same code again and again for different class types.</description>
 
@@ -32,7 +32,7 @@
 
     <scm>
         <connection>scm:git:git://github.com/adityakumar28/base-crud-app.git</connection>
-        <developerConnection>scm:git:ssh://github.com:adityakumar28/base-crud-app.git</developerConnection>
+        <developerConnection>scm:git:ssh://github.com/adityakumar28/base-crud-app.git</developerConnection>
         <url>http://github.com/adityakumar28/base-crud-app</url>
       <tag>base-crud-app-1.0</tag>
   </scm>
@@ -75,17 +75,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.7</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
